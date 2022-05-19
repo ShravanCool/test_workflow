@@ -1,4 +1,10 @@
-on: [push]
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
 
 jobs:
     hello_world_job:
@@ -12,3 +18,19 @@ jobs:
                   who-to-greet: 'Mona the Octocat'
             - name: Get the output time
               run: echo "The time was ${{ steps.hello.outputs.time }}"
+    job2:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout current code using public action
+              uses: actions/checkout@v2
+            - name: get the list of files in the current directory and sub-directory
+              run: |
+                  pwd
+                  ls -alR
+    job3:
+        runs-on: ubuntu-latest
+        steps:
+            - name: print current files
+              run: |
+                  pwd
+                  ls -alR
