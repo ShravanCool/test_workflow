@@ -23,6 +23,8 @@ jobs:
         steps:
             - name: checkout current code using public action
               uses: actions/checkout@v2
+              with:
+                  ref: ${{ github.event.pull_request.head.sha  }}
             - name: get the list of files in the current directory and sub-directory
               run: |
                   pwd
