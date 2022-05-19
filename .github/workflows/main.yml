@@ -57,6 +57,6 @@ jobs:
                   echo ${{ steps.changed-files.outputs.all_changed_files }}
 
             - name: Run migrations linter
-              uses: ShravanCool/hello-world-docker-action@v1.1
+              uses: ShravanCool/hello-world-docker-action@v1.3
               with:
                   files: ${{ steps.changed-files.outputs.all_changed_files }}
