@@ -93,9 +93,19 @@ def main():
             all_errors[migration_file] = errors
         if len(warnings):
             all_warnings[migration_file] = warnings
-        
-    print("Errors: ", all_errors)
-    print("Warnings: ", all_warnings)
+    
+    if all_errors or all_warnings:
+        if all_errors:
+            print("\nPossible errors present in the migration files:")
+            for file_name, errors in all_errors.items():
+                print("{}: {}".format(file_name, errors))
+        if all_warnings:
+            print("\nPossible warnings present in the migration files:")
+            for file_name, warnings in all_warnings.items():
+                print("{}: {}".format(file_name, warnings))
+        sys.exit(1)
+    else:
+        print("\n No possible errors found in the migration files")
 
 if __name__ == "__main__":
     main()
