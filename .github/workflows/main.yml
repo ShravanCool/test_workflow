@@ -1,3 +1,5 @@
+name: Django Migrations Linter
+
 on:
     push:
         branches:
@@ -7,39 +9,9 @@ on:
             - main
 
 jobs:
-    #hello_world_job:
-        #runs-on: ubuntu-latest
-        #name: A job to say hello
-        #steps:
-            #- name: Hello world action step
-              #id: hello
-              #uses: ShravanCool/hello-world-docker-action@v1
-              #with:
-                  #who-to-greet: 'Mona the Octocat'
-            #- name: Get the output time
-              #run: echo "The time was ${{ steps.hello.outputs.time }}"
-    job2:
+    migrations_linter_job:
         runs-on: ubuntu-latest
-        steps:
-            - name: checkout current code using public action
-              uses: actions/checkout@v3
-              with:
-                  ref: ${{ github.event.pull_request.head.sha  }}
-            - name: get the list of files in the current directory and sub-directory
-              run: |
-                  pwd
-                  ls -alR
-    job3:
-        runs-on: ubuntu-latest
-        steps:
-            - name: print current files
-              run: |
-                  pwd
-                  ls -alR
-
-    job4:
-        runs-on: ubuntu-latest
-        name: Test changed files
+        name: Alert for checking breaking migrations
         steps:
             - uses: actions/checkout@v3
               with:
@@ -56,10 +28,6 @@ jobs:
                   done
                   echo ${{ steps.changed-files.outputs.all_changed_files }}
 
-            #- name: Run migrations linter
-              #uses: ShravanCool/hello-world-docker-action@v1.3
-              #with:
-                  #files: ${{ steps.changed-files.outputs.all_changed_files }}
             - name: setup python
               uses: actions/setup-python@v2
               with:
