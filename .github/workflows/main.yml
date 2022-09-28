@@ -61,9 +61,11 @@ jobs:
               #with:
                   #files: ${{ steps.changed-files.outputs.all_changed_files }}
             - name: setup python
-              uses: actions/setup-python@v2
+              uses: actions/setup-python@v4.2.0
               with:
                   python-version: 3.5.9
+                  check-latest: true
+
             - name: Run migrations linter
               run: |
                   python linter.py ${{ steps.changed-files.outputs.all_changed_files }}
