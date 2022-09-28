@@ -6,3 +6,6 @@ def test():
 
 def test2():
     print("Hello world")
+
+def test3():
+    print("Hello world")
