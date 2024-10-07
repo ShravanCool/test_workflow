@@ -95,6 +95,8 @@ def main():
             all_warnings[migration_file] = warnings
     
     if all_errors or all_warnings:
+        print("\nThere appears to be some breaking migrations present:\n")
+
         if all_errors:
             print("\nPossible errors present in the migration files:")
             for file_name, errors in all_errors.items():
